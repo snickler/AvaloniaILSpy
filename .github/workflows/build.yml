@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [ubuntu-latest, macos-latest, windows-latest]
+        platform: [ubuntu-latest, macos-latest, windows-latest, self-hosted]
     runs-on: ${{ matrix.platform }}
     steps:
     - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
       if: matrix.platform == 'ubuntu-latest'
       run: 7z a -tzip artifacts/ILSpy-linux-arm64-Release.zip artifacts/linux-arm64/*
     - name: Zip Windows arm64
-      if: matrix.platform == 'windows-latest'
+      if: matrix.platform == 'self-hosted'
       run: 7z a -tzip artifacts\ILSpy-win-arm64-Release.zip artifacts\win-arm64\*    
     - name: Upload Linux x64 artifacts
       if: matrix.platform == 'ubuntu-latest'
@@ -66,7 +66,7 @@ jobs:
         path: artifacts/ILSpy-win-x64-Release.zip
         if-no-files-found: error
     - name: Upload Windows arm64 artifacts
-      if: matrix.platform == 'windows-latest'
+      if: matrix.platform == 'self-hosted'
       uses: actions/upload-artifact@v2
       with:
         name: Windows arm64 Release
