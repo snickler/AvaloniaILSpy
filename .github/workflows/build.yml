@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 7.0.100-preview.2.22118.2
         include-prerelease: true
     - name: Run the Cake script
       uses: cake-build/cake-action@v1
